@@ -32,6 +32,7 @@ sys.path.append(os.path.join(BASE_DIR, 'apps'))
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
+    '*',
 ]
 
 # Application definition
@@ -67,6 +68,7 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1',
     'http://localhost:3000',
+    'https://test.iaccount.uz',
 )
 
 ROOT_URLCONF = 'config.urls'
@@ -93,17 +95,25 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.environ.get('POSTGRES_DB', 'postgres'),
+#         'USER': os.environ.get('POSTGRES_USER', 'postgres'),
+#         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
+#         'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+#         'PORT': os.environ.get('POSTGRES_PORT', 5432),
+#     }
+# }
+
+###################### ONLY FOR TEST THIS DATABASE #####################
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB', 'postgres'),
-        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', ''),
-        'HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
-        'PORT': os.environ.get('POSTGRES_PORT', 5432),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'backend.db'),
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -164,13 +174,13 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 15,
 }
 
-FRONTEND_DOMAIN = os.environ.get('FRONTEND_DOMAIN', 'https://todo.com')
-BACKEND_DOMAIN = os.environ.get('BACKEND_DOMAIN', 'https://todo.com')
+FRONTEND_DOMAIN = os.environ.get('FRONTEND_DOMAIN', 'https://test.iaccount.uz')
+BACKEND_DOMAIN = os.environ.get('BACKEND_DOMAIN', 'https://backend.iaccount.uz')
 COMPANY_NAME = 'Monday'
 
-try:
-    from .settings_dev import *
-except ImportError:
-    pass
+# try:
+#     from .settings_dev import *
+# except ImportError:
+#     pass
 
 CORS_ORIGIN_ALLOW_ALL = DEBUG
