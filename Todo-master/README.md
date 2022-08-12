@@ -2,7 +2,7 @@
 ![]()
 
 ###### Set
-* _Clone repository_ `https://github.com/umidbeku/todo.git`
+* _Clone repository_ `https://github.com/nurshoddeveloper/ProjectForCheckCodeStyle.git`
 * _Go to_ `backend/config` _and copy_ `example.settings_dev.py` as `settings_dev.py`
 * _Create new postgres database_
 * _Open_ `backend/config/settings_dev.py` _file ans set up your database and email credentials_
