@@ -42,6 +42,13 @@ export default function TodoItem({ item, onUpdate, onDelete, index }) {
                             <p className="title is-6"> Category: {item.category}</p>
                         </div>
                         <div className="is-center mr-6 mt-3">
+                            <p className="title is-6">Attributes: {item.attributes.map((elem) =>
+                                <div>
+                                    <span>Name: {elem.name}- {elem.value}</span>
+                                </div>)}
+                            </p>
+                        </div>
+                        <div className="is-center mr-6 mt-3">
                             <p className="title is-6">Brand: {item.brand}</p>
                         </div>
                     </div>
