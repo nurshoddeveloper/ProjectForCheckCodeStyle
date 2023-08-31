@@ -11,13 +11,10 @@ export default function Todo() {
     return (
         <div className="has-background-grey-lighter is-fullheight">
             <div className="container mb-1">
-                <h1 className="has-text-centered is-size-3">Hisobotlar</h1>
-
+                <h1 className="has-text-centered is-size-3">Products</h1>
                 <div className="box">
                     {!todos.loading ? (
                         <div>
-                            <TodoCreate onSuccess={todos.request} />
-
                             {todos.response ? todos.response.map((item, index) => (
                                 <TodoItem
                                     index={index}

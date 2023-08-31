@@ -10,13 +10,13 @@ class SignUpTest(BaseTestCase):
     fixtures = ('users_and_tokens.yaml', )
 
     def test_signup_fail(self):
-        translation.activate('en')
+        translation.activate('ru')
         response = self.client.post(reverse('users:signup'), {})
         self.assertEqual(400, response.status_code, response.data)
-        self.assertEqual('This field is required.', response.data['email'][0], response.data)
-        self.assertEqual('This field is required.', response.data['password'][0], response.data)
-        self.assertEqual('This field is required.', response.data['first_name'][0], response.data)
-        self.assertEqual('This field is required.', response.data['last_name'][0], response.data)
+        self.assertEqual('Обязательное поле.', response.data['email'][0], response.data)
+        self.assertEqual('Обязательное поле.', response.data['password'][0], response.data)
+        self.assertEqual('Обязательное поле.', response.data['first_name'][0], response.data)
+        self.assertEqual('Обязательное поле.', response.data['last_name'][0], response.data)
 
         # Unique email validation
         response = self.client.post(reverse('users:signup'), {'email': 'angelina@gmail.com'})

@@ -18,13 +18,14 @@ class SignUpSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('id', 'email', 'password', 'first_name', 'last_name')
+        fields = ('id', 'email', 'password', 'first_name', 'last_name', 'invitation_token', 'invitation', )
         extra_kwargs = {
             'email': {'required': True, 'validators': [UniqueValidator(
                 queryset=User.objects.unique_query(),
                 message="User with this email already exists."
             )]},
             'first_name': {'required': True},
+            'invitation_token': {'required': False},
             'last_name': {'required': True},
             'password': {'write_only': True},
         }

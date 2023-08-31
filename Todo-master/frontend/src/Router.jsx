@@ -11,8 +11,6 @@ import ResetPasswordMessage from './pages/ResetPasswordMessage'
 import BaseContextWrapper from './components/common/BaseContext'
 import EmailConfirmationMessage from './pages/EmailConfirmationMessage'
 import Todo from './pages/Todo'
-import TodoDetail from './pages/TodoDetail'
-import Project from './pages/Project'
 
 
 export default function App() {
@@ -21,8 +19,6 @@ export default function App() {
             <BaseContextWrapper>
                 <Switch>
                     <ProtectedRoute path="/todo" component={Todo} exact />
-                    <ProtectedRoute path="/todo/:id" component={TodoDetail} exact />
-                    <ProtectedRoute path="/project" component={Project} exact />
                     <Route path="/" name="auth" component={Login} exact />
                     <Route path="/sign-up" name="auth" component={SignUp} exact />
                     <Route path="/email-confirmation-message" component={EmailConfirmationMessage} exact />

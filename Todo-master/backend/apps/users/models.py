@@ -1,4 +1,6 @@
 import uuid
+from random import choice
+from string import digits, ascii_letters
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -13,7 +15,10 @@ class User(AbstractUser):
     email = models.EmailField(unique=True)  # override default email field
     confirmation_code = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     verified_at = models.DateTimeField(null=True, blank=True)
+    expires_user_at = models.DateField(null=True, blank=True)
     objects = UsersManager()
+    invitation_token = models.CharField(max_length=8, null=True, blank=True)
+    invitation = models.CharField(max_length=8, null=True, blank=True)
 
     class Meta(AbstractUser.Meta):
         db_table = 'user_users'

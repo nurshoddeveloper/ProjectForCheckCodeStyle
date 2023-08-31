@@ -8,10 +8,9 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/v1/', include([
         path('core/', include(('core.urls', 'core'), namespace='core')),
-        path('todo/', include(('todo.urls', 'todo'), namespace='todo')),
         path('users/', include(('users.urls', 'user'), namespace='users')),
+        path('todo/', include(('todo.urls', 'todo'), namespace='todo')),
     ])),
-    path('sentry/', lambda request: 1 / 0),
 ]
 
 if settings.DEBUG:

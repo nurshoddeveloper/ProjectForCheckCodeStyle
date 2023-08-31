@@ -1,9 +1,10 @@
 from rest_framework.filters import SearchFilter
-from rest_framework.generics import ListAPIView, UpdateAPIView, GenericAPIView
+from rest_framework.generics import ListAPIView, UpdateAPIView, GenericAPIView, get_object_or_404
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from users.serializers.users import UserSerializer, ChangePasswordValidator
 from users.models import User
+from users.serializers.users import UserSerializer, ChangePasswordValidator
 
 
 class UsersListView(ListAPIView):
@@ -32,3 +33,10 @@ class ChangePasswordView(GenericAPIView):
         user.set_password(data.get('new_password'))
         user.save()
         return Response(status=200)
+
+
+class UserDetailView(APIView):
+    def get(self, request, pk):
+        instance = get_object_or_404(User, id=pk)
+        data = UserSerializer(instance).data
+        return Response(data)

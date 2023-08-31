@@ -1,8 +1,4 @@
 import React, { useState } from 'react'
-import cn from 'classnames'
-import { css, StyleSheet } from 'aphrodite'
-import { NavLink } from 'react-router-dom'
-import { getDateTime } from '../utils/date'
 import { useDeleteRequest, usePutRequest } from '../hooks/request'
 import { TODO_DETAIL } from '../urls'
 import Dropdown, { DropdownItem } from './common/Dropdown'
@@ -32,18 +28,21 @@ export default function TodoItem({ item, onUpdate, onDelete, index }) {
                 {showUpdate ? (
                     <TodoUpdate item={item} onUpdate={onUpdate} />
                 ) : (
-                    <div style={{ display: 'flex' }} className={cn({ [css(styles.del)]: !item.isActive })}>
+                    <div style={{ display: 'flex' }}>
                         <div className="is-left mr-6 mt-3">
                             <p className="title is-6">{index + 1}</p>
                         </div>
-                        <NavLink to={`/todo/${item.id}`}>
-                            <div className="is-center mr-6 mt-3">
-                                <p className="title is-6 has-text-link">{item.title}</p>
-                            </div>
-
-                        </NavLink>
-                        <div className="mr-6 mt-3">
-                            <p className="subtitle is-7">{getDateTime(item.createdAt)}</p>
+                        <div className="mr-2">
+                            <img src={item.imageUrl} width={100} height={50} alt=""/>
+                        </div>
+                        <div className="is-center mr-6 mt-3">
+                            <p className="title is-6">Name: {item.name}</p>
+                        </div>
+                        <div className="is-center mr-6 mt-3">
+                            <p className="title is-6"> Category: {item.category}</p>
+                        </div>
+                        <div className="is-center mr-6 mt-3">
+                            <p className="title is-6">Brand: {item.brand}</p>
                         </div>
                     </div>
                 )}
@@ -62,10 +61,3 @@ export default function TodoItem({ item, onUpdate, onDelete, index }) {
         </div>
     )
 }
-
-const styles = StyleSheet.create({
-    del: {
-        textDecoration: 'line-through',
-        display: 'flex',
-    },
-})

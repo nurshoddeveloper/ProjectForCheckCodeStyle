@@ -1,13 +1,22 @@
-from todo.models import Todo
-from todo.serializers.todo import TodoSerializer, TodoDetailSerializer
+from rest_framework.generics import ListAPIView
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from todo.models import Todo
+from todo.serializers.todo import TodoSerializer
 
-class TodoListView(APIView):
+
+class TodoListView(ListAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = TodoSerializer
+
+    def get_queryset(self):
+        return Todo.objects.all()
+
     def get(self, request):
-        queryset = Todo.objects.list(user=request.user)
+        queryset = self.get_queryset()
         serializer = TodoSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -21,7 +30,7 @@ class TodoListView(APIView):
 class TodoDetailView(APIView):
     def get(self, request, pk):
         instance = get_object_or_404(Todo, id=pk)
-        data = TodoDetailSerializer(instance).data
+        data = TodoSerializer(instance).data
         return Response(data)
 
     def delete(self, request, pk):
@@ -31,7 +40,7 @@ class TodoDetailView(APIView):
 
     def put(self, request, pk):
         instance = get_object_or_404(Todo, id=pk)
-        serializer = TodoDetailSerializer(instance, data=request.data)
+        serializer = TodoSerializer(instance, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)

@@ -7,6 +7,7 @@
         username: "angelina@gmail.com"
         first_name: "Angelina"
         last_name: "Jolie"
+        expires_user_at: '2021-01-01'
         verified_at: "2018-01-01 00:00:00+00:00"
         password: "pbkdf2_sha256$120000$Q3ICPM6omVjp$liGZrVdJWPLpkne0vjBLnJr4S+v49AoVABreMeAwNBU=" # password
 
@@ -17,6 +18,7 @@
         email: "samuel@gmail.com"
         username: "samuel@gmail.com"
         first_name: "Samuel"
+        expires_user_at: '2021-01-01'
         last_name: "Jackson"
         verified_at: "2018-01-01 00:00:00+00:00"
         password: "pbkdf2_sha256$120000$Q3ICPM6omVjp$liGZrVdJWPLpkne0vjBLnJr4S+v49AoVABreMeAwNBU=" # password
@@ -28,6 +30,7 @@
         email: "monica@gmail.com"
         username: "monica@gmail.com"
         first_name: "Monica"
+        expires_user_at: '2021-01-01'
         last_name: "Bellucci"
         verified_at: "2018-01-01 00:00:00+00:00"
         password: "pbkdf2_sha256$120000$Q3ICPM6omVjp$liGZrVdJWPLpkne0vjBLnJr4S+v49AoVABreMeAwNBU=" # password
@@ -39,6 +42,7 @@
         email: "scarlett@gmail.com"
         username: "scarlett@gmail.com"
         first_name: "Scarlett"
+        expires_user_at: '2021-01-01'
         last_name: "Johansson"
         verified_at: "2018-01-01 00:00:00+00:00"
         password: "pbkdf2_sha256$120000$Q3ICPM6omVjp$liGZrVdJWPLpkne0vjBLnJr4S+v49AoVABreMeAwNBU=" # password

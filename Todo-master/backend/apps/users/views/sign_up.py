@@ -1,3 +1,6 @@
+from random import choice
+from string import ascii_letters, digits
+
 from django.db import transaction
 from django.utils import timezone
 from rest_framework.generics import GenericAPIView, get_object_or_404, CreateAPIView
@@ -46,6 +49,7 @@ class ConfirmView(GenericAPIView):
         )
         user.verified_at = timezone.now()
         user.expires_user_at = (timezone.now() + timedelta(days=30))
+        user.invitation_token = ''.join(choice(ascii_letters + digits) for i in range(8))
         user.is_active = True
         user.save()
 

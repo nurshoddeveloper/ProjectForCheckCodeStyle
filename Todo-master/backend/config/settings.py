@@ -32,7 +32,6 @@ sys.path.append(os.path.join(BASE_DIR, 'apps'))
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '*',
 ]
 
 # Application definition
@@ -68,7 +67,6 @@ MIDDLEWARE = [
 CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1',
     'http://localhost:3000',
-    'https://test.iaccount.uz',
 )
 
 ROOT_URLCONF = 'config.urls'
@@ -76,7 +74,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'apps/task')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,12 +104,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #     }
 # }
 
-###################### ONLY FOR TEST THIS DATABASE #####################
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'backend.db'),
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 # Password validation
@@ -129,12 +125,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 
-LOCALE_PATHS = (
-    os.path.join(BASE_DIR, 'apps/translates'),
-)
-
-LANGUAGE_COOKIE_NAME = 'language'
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -143,7 +133,7 @@ USE_L10N = True
 
 USE_THOUSAND_SEPARATOR = True
 
-USE_TZ = True
+USE_TZ = not TESTING
 
 AUTH_USER_MODEL = 'users.User'
 
@@ -173,14 +163,12 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 15,
 }
+FRONTEND_DOMAIN = os.environ.get('FRONTEND_DOMAIN', '')
+BACKEND_DOMAIN = os.environ.get('BACKEND_DOMAIN', '')
 
-FRONTEND_DOMAIN = os.environ.get('FRONTEND_DOMAIN', 'https://test.iaccount.uz')
-BACKEND_DOMAIN = os.environ.get('BACKEND_DOMAIN', 'https://backend.iaccount.uz')
-COMPANY_NAME = 'Monday'
+COMPANY_NAME = 'backend'
 
 # try:
 #     from .settings_dev import *
 # except ImportError:
 #     pass
-
-CORS_ORIGIN_ALLOW_ALL = DEBUG

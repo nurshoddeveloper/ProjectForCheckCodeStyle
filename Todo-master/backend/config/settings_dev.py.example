@@ -1,6 +1,4 @@
-from sentry_sdk.integrations.django import DjangoIntegration
-from .settings import *
-
+DEBUG = True
 
 DATABASES = {
     'default': {
@@ -13,16 +11,11 @@ DATABASES = {
     }
 }
 
-FRONTEND_DOMAIN = 'https://front.domain'
-
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 2525
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 EMAIL_HOST_USER = ''
 EMAIL_HOST_PASSWORD = ''
-
 SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-STATIC_ROOT = '/static'
-MEDIA_ROOT = '/uploads'
+BACKEND_DOMAIN = ''

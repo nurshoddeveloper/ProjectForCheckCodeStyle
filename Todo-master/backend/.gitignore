@@ -17,4 +17,5 @@ vandelay-py.js
 .envrc
 files
 .coverage
+.coveragerc
 /htmlcov
